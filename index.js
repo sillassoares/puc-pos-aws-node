@@ -1,11 +1,16 @@
 "use strict";
 
 var soap = require('strong-soap').soap;
-// wsdl of the web service this client is going to invoke. For local wsdl you can use, url = './wsdls/stockquote.wsdl'
-var url = 'http://www.dneonline.com/calculator.asmx?WSDL';
+var request = require('request');
 
-var options = {};
-soap.createClient(url, options, function(err, client) {
+var url = 'http://www.dneonline.com/calculator.asmx?WSDL';
+var request_with_defaults = request.defaults({'proxy': '127.0.0.1:9090'});
+var options = {'request': request_with_defaults};
+soap.createClient(url, {}, function(err, client) {
+
+    if (!client) {
+        return ;
+    }
 
     var intA = Math.floor((Math.random() * 100) + 1);
     var intB = Math.floor((Math.random() * 100) + 1);
