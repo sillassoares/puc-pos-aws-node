@@ -12,24 +12,38 @@ soap.createClient(url, {}, function(err, client) {
         return ;
     }
 
-    var intA = Math.floor((Math.random() * 100) + 1);
-    var intB = Math.floor((Math.random() * 100) + 1);
-    var requestArgs = {
+    var intA, intB, requestArgs, method;
+
+    intA = Math.floor((Math.random() * 100) + 1);
+    intB = Math.floor((Math.random() * 100) + 1);
+    requestArgs = {
         'intA': intA, 'intB': intB
     };
 
-    var method = client['Add'];
+    method = client['Add'];
     method(requestArgs, function(err, result, envelope, soapHeader) {
-        console.log(`Response Add: ${result.AddResult}`);
+        console.log(`Response Add: ${intA} + ${intB} = ${result.AddResult}`);
     });
 
-    var method = client['Multiply'];
+    intA = Math.floor((Math.random() * 100) + 1);
+    intB = Math.floor((Math.random() * 100) + 1);
+    requestArgs = {
+        'intA': intA, 'intB': intB
+    };
+
+    method = client['Multiply'];
     method(requestArgs, function(err, result, envelope, soapHeader) {
-        console.log(`Response Multiply: ${result.MultiplyResult}`);
+        console.log(`Response Multiply: ${intA} * ${intB} = ${result.MultiplyResult}`);
     });
 
-    var method = client['Subtract'];
+    intA = Math.floor((Math.random() * 100) + 1);
+    intB = Math.floor((Math.random() * 100) + 1);
+    requestArgs = {
+        'intA': intA, 'intB': intB
+    };
+
+    method = client['Subtract'];
     method(requestArgs, function(err, result, envelope, soapHeader) {
-        console.log(`Response Subtract: ${result.SubtractResult}`);
+        console.log(`Response Subtract:  ${intA} - ${intB} = ${result.SubtractResult}`);
     });
 });
